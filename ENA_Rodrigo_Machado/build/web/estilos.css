@@ -1,0 +1,31 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jul 24, 2020, 3:21:35 PM
+    Author     : rodrigo
+*/
+
+body {
+    font-family: 'Arial';
+    font-size: 16px;
+}
+
+h1 {
+    margin-bottom: 30px;
+}
+
+table {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+th, td {
+    padding: 10px;
+}
+
+table.celled, table.celled th, table.celled td {
+    border: 1px solid black;
+}
