@@ -21,7 +21,7 @@ public class Conexion {
     String bd = "requerimiento";  // variable para el nombre de nuestra base de datos
     String driver = "com.mysql.jdbc.Driver"; // driver de jdbc para mysql
     String usuario = "root"; // usuario de la base de datos
-    String password = "b0rd3Aux223"; // password del usuario de la base de datos
+    String password = "12345678"; // password del usuario de la base de datos
     
     // este metodo permite conectar con la base de datos
     public void conectar() throws ClassNotFoundException, SQLException{

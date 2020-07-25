@@ -5,13 +5,16 @@
  */
 package controladores;
 
+import dao.UsuarioDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import modelos.Usuario;
 
 /**
  *
@@ -31,20 +34,50 @@ public class ControladorUsuario extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ControladorUsuario</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ControladorUsuario at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        if(request.getParameter("accion")!=null){
+        String accion = request.getParameter("accion");
+        switch(accion){
+            case "1": iniciarSesion(request,response);
+                break;
+            default: response.sendRedirect("index.jsp?msj=Acción no permitida");
+        }
+        }else{
+            response.sendRedirect("index.jsp?msj=Acción no permitida");
         }
     }
+    
+    private void iniciarSesion(HttpServletRequest request, HttpServletResponse response) throws IOException{
+        try{
+        String nombre = request.getParameter("nombre");
+        String password = request.getParameter("password");
+        String recordar = request.getParameter("recordar");
+        
+        UsuarioDAO ud = new UsuarioDAO();
+        Usuario temporal= ud.obtenerUsuario(nombre);
+        
+        if(temporal != null) {
+            if(temporal.getPassword().equals(password)){
+                HttpSession sesion = request.getSession();
+                sesion.setAttribute("usuario", temporal);
+            
+                if (recordar != null) {
+                    Cookie c = new Cookie("nombreUsuario", temporal.getNombre());
+                    c.setMaxAge(60 * 60 * 24 * 30);
+                    response.addCookie(c);
+                }
+                
+                response.sendRedirect("menu.jsp");
+            }else{
+                response.sendRedirect("index.jsp?msj=Password incorrecto");
+            }
+        } else {
+            response.sendRedirect("index.jsp?msj=Nombre de usuario no registrado");
+        }
+        }catch(Exception e){
+            response.sendRedirect("index.jsp?msj="+e.getMessage());
+        }
+    }
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

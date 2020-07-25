@@ -13,14 +13,22 @@
         <title>Autentificación</title>
     </head>
     <body>
-        <center>
+        <%
+            String nombreUsuario = "";
+            for(Cookie c: request.getCookies()) {
+                if (c.getName().equals("nombreUsuario")) {
+                    nombreUsuario = c.getValue();
+                }
+            }
+        %>
+        <main>
             <h1>Autentificación</h1>
             
-            <form>
+            <form action="ControladorUsuario" method="post">
                 <table>
                     <tr>
                         <td><strong>Usuario</strong></td>
-                        <td><input type="text" name="nombre" required /></td>
+                        <td><input type="text" name="nombre" required value="<%= nombreUsuario %>" /></td>
                     </tr>
                     <tr>
                         <td><strong>Password</strong></td>
@@ -33,12 +41,20 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td colspan="2">
+                            <% if (request.getParameter("msj") != null) { %>
+                                <span class="alert"><%= request.getParameter("msj") %></span>
+                            <% } %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input type="hidden" name="accion" value="1" />
                             <input type="submit" value="Ingresar" />
                         </td>
                     </tr>    
                 </table>
             </form>
-        </center>
+        </main>
     </body>
 </html>

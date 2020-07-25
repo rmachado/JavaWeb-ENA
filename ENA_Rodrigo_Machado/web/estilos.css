@@ -11,6 +11,7 @@ and open the template in the editor.
 body {
     font-family: 'Arial';
     font-size: 16px;
+    background-color: #eee;
 }
 
 h1 {
@@ -22,10 +23,78 @@ table {
     margin-bottom: 20px;
 }
 
+main {
+    width: 80%;
+    background-color: white;
+    padding: 20px 30px;
+    box-shadow: 10px 10px 10px #888;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+button, input[type=submit] {
+    width: 100%;
+    background-color: cornflowerblue;
+    color: white;
+    border-radius: 10px;
+    padding: 10px 25px;
+    border: none;
+    box-shadow: 5px 5px 10px #888;
+}
+
+button:hover, input[type=submit]:hover {
+    background-color: #5b83cc;
+}
+
+button:active, input[type=submit]:active {
+    background-color: deepskyblue;
+}
+
+input {
+    border-radius: 10px;
+    border: 1px solid #8888;
+    padding: 5px 10px;
+}
+
+select {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #8888;
+    padding: 5px 30px 5px 10px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: transparent;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+    background-repeat: no-repeat;
+    background-position-x: 100%;
+    background-position-y: 5px;
+}
+
+select:after {
+    position: absolute;
+    content: "";
+    top: 14px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+}
+    
 th, td {
     padding: 10px;
 }
 
 table.celled, table.celled th, table.celled td {
     border: 1px solid black;
+}
+
+.alert {
+    font-weight: bold;
+    color: orange;
 }

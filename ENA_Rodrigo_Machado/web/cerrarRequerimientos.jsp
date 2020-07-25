@@ -12,8 +12,13 @@
         <link rel="stylesheet" href="estilos.css" />
         <title>Cerrar Requerimientos</title>
     </head>
+    <%
+        if (session.getAttribute("usuario") == null) {
+            response.sendRedirect("index.jsp?msj=Acceso denegado");
+        }
+    %>
     <body>
-        <center>
+        <main>
             <h1>Cerrar Requerimientos</h1>
             
             <form>
@@ -67,5 +72,5 @@
             
             <a href="menu.jsp"><button type="button">Volver al menú</button></a>
         </center>
-    </body>
+    </main>
 </html>
