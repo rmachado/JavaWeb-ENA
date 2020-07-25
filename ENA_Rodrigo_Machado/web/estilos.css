@@ -45,6 +45,7 @@ button, input[type=submit] {
     padding: 10px 25px;
     border: none;
     box-shadow: 5px 5px 10px #888;
+    cursor: pointer;
 }
 
 button:hover, input[type=submit]:hover {

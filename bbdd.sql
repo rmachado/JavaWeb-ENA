@@ -47,6 +47,24 @@ CREATE TABLE `requerimiento` (
   CONSTRAINT `fk_requerimiento_encargado` FOREIGN KEY (`idEncargadoAsignado`) REFERENCES `encargado` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
+CREATE OR REPLACE VIEW `v_departamento` AS
+SELECT d.*, g.nombre as nombreGerencia FROM departamento d
+	INNER JOIN gerencia g ON d.idGerencia = g.id;
+
+CREATE OR REPLACE VIEW `v_encargado` AS
+SELECT e.*, d.nombre as 'departamento', d.idGerencia, d.asignable, g.nombre as 'gerencia'
+FROM encargado e INNER JOIN departamento d ON e.idDepartamento = d.id INNER JOIN gerencia g ON d.idGerencia = g.id;
+
+CREATE OR REPLACE VIEW `v_requerimiento` AS
+SELECT r.*, d.nombre as 'departamento', d.idGerencia, d.asignable, g.nombre as 'gerencia',
+	e.nombre as 'nombreEncargado', e.apellido as 'apellidoEncargado',
+	da.id as 'idDepartamentoAsignado', da.nombre as 'departamentoAsignado'
+FROM requerimiento r
+	INNER JOIN departamento d ON r.idDptoSolicitante = d.id
+    INNER JOIN gerencia g ON d.idGerencia = g.id
+    INNER JOIN encargado e ON r.idEncargadoAsignado = e.id
+    INNER JOIN departamento da ON e.idDepartamento = da.id;
+
 INSERT INTO `usuario` VALUES
 	(1, 'admin', 'admin');
 

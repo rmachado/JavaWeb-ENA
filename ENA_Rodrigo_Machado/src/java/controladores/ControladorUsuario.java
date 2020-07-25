@@ -35,12 +35,12 @@ public class ControladorUsuario extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         if(request.getParameter("accion")!=null){
-        String accion = request.getParameter("accion");
-        switch(accion){
-            case "1": iniciarSesion(request,response);
-                break;
-            default: response.sendRedirect("index.jsp?msj=Acción no permitida");
-        }
+            String accion = request.getParameter("accion");
+            switch(accion){
+                case "1": iniciarSesion(request,response);
+                    break;
+                default: response.sendRedirect("index.jsp?msj=Acción no permitida");
+            }
         }else{
             response.sendRedirect("index.jsp?msj=Acción no permitida");
         }

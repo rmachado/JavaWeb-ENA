@@ -18,12 +18,6 @@ public class Encargado {
 
     public Encargado() {
     }
-
-    public Encargado(int id, String nombre, String apellido) {
-        this.id = id;
-        this.nombre = nombre;
-        this.apellido = apellido;
-    }
     
     public Encargado(int id, String nombre, String apellido, Departamento departamento) {
         this.id = id;

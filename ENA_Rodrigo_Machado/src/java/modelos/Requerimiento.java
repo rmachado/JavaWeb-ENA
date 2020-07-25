@@ -26,6 +26,14 @@ public class Requerimiento {
         this.descripcion = descripcion;
         this.cerrado = cerrado;
     }
+    
+    public Requerimiento(int id, Departamento solicitante, Encargado encargadoAsignado, String descripcion, boolean cerrado) {
+        this.id = id;
+        this.solicitante = solicitante;
+        this.encargadoAsignado = encargadoAsignado;
+        this.descripcion = descripcion;
+        this.cerrado = cerrado;
+    }
 
     public int getId() {
         return id;

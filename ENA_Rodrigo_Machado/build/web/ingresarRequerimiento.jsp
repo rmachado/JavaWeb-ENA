@@ -27,6 +27,11 @@
         ArrayList<Gerencia> gerencias = new GerenciaDAO().obtenerGerencias();
         ArrayList<Departamento> dptos = new DepartamentoDAO().obtenerDepartamentos();
         ArrayList<Encargado> encargados = new EncargadoDAO().obtenerEncargados();
+        
+        int idGerencia = request.getParameter("gerencia") != null ? Integer.parseInt(request.getParameter("gerencia")) : 0;
+        int idDptoSolicitante = request.getParameter("dpto") != null ? Integer.parseInt(request.getParameter("dpto")) : 0;
+        int idDptoAsignado = request.getParameter("asignado") != null ? Integer.parseInt(request.getParameter("asignado")) : 0;
+        int idEncargado = request.getParameter("encargado") != null ? Integer.parseInt(request.getParameter("encargado")) : 0;
     %>
     <body>
         <main>
@@ -37,10 +42,12 @@
                     <tr>
                         <td><strong>Gerencia:</strong></td>
                         <td>
-                            <select name="idGerencia" required>
-                                <option value="">Seleccionar</option>
+                            <select name="idGerencia" id="gerencia" required>
+                                <option value="0">Seleccionar</option>
                                 <% for(Gerencia g: gerencias) { %>
-                                    <option value="<%= g.getId() %>"><%= g %></option>
+                                    <option value="<%= g.getId() %>" <%if(g.getId() == idGerencia){%>selected="selected"<%}%>>
+                                        <%= g %>
+                                    </option>
                                 <% } %>
                             </select>
                         </td>
@@ -48,23 +55,31 @@
                     <tr>
                         <td><strong>Depto.:</strong></td>
                         <td>
-                            <select name="idDptoSolicitante" required>
-                                <option value="">Seleccionar</option>
-                                <% for(Departamento d: dptos) { %>
-                                    <option value="<%= d.getId() %>"><%= d %></option>
-                                <% } %>
+                            <select name="idDptoSolicitante" id="dptoSolicitante" required>
+                                <option value="0">Seleccionar</option>
+                                <% for(Departamento d: dptos) {
+                                    if (idGerencia == 0 || d.getGerencia().getId() == idGerencia) {
+                                %>
+                                        <option value="<%= d.getId() %>" <%if(d.getId() == idDptoSolicitante){%>selected="selected"<%}%>>
+                                            <%= d %>
+                                        </option>
+                                <%  }
+                                   }
+                                %>
                             </select>
                         </td>
                     </tr>
                     <tr>
                         <td><strong>Asignar a:</strong></td>
                         <td>
-                            <select name="idDptoAsignado" required>
-                                <option value="">Seleccionar</option>
+                            <select name="idDptoAsignado" id="dptoAsignado" required>
+                                <option value="0">Seleccionar</option>
                                 <% for(Departamento d: dptos) {
                                      if (d.isAsignabe()) {
                                 %>
-                                        <option value="<%= d.getId() %>"><%= d %></option>
+                                        <option value="<%= d.getId() %>" <%if(d.getId() == idDptoAsignado){%>selected="selected"<%}%>>
+                                            <%= d %>
+                                        </option>
                                 <%   }
                                    }
                                 %>
@@ -74,11 +89,17 @@
                     <tr>
                         <td><strong>Encargado:</strong></td>
                         <td>
-                            <select name="idEncargado" required>
-                                <option value="">Seleccionar</option>
-                                <% for(Encargado e: encargados) { %>
-                                    <option value="<%= e.getId() %>"><%= e %></option>
-                                <% } %>
+                            <select name="idEncargado" id="encargado" required>
+                                <option value="0">Seleccionar</option>
+                                <% for(Encargado e: encargados) {
+                                      if (idDptoAsignado == 0 || e.getDepartamento().getId() == idDptoAsignado) {
+                                %>
+                                        <option value="<%= e.getId() %>" <%if(e.getId() == idEncargado){%>selected="selected"<%}%>>
+                                            <%= e %>
+                                        </option>
+                                <%    }
+                                   }
+                                %>
                             </select>
                         </td>
                     </tr>
@@ -107,5 +128,20 @@
                 </table>
             </form>
         </main>
+        <script>
+            window.onload = function() {
+                
+                function onChange() {
+                    var idGerencia = document.getElementById("gerencia").value;
+                    var idDpto = document.getElementById("dptoSolicitante").value;
+                    var idAsignado = document.getElementById("dptoAsignado").value;
+                    var idEncargado = document.getElementById("encargado").value;
+                    window.location.href = "ingresarRequerimiento.jsp?gerencia=" + idGerencia + "&dpto=" + idDpto + "&asignado=" + idAsignado + "&encargado=" + idEncargado;
+                }
+                
+                document.getElementById("gerencia").onchange = onChange;
+                document.getElementById("dptoAsignado").onchange = onChange;
+            }
+        </script>
     </body>
 </html>

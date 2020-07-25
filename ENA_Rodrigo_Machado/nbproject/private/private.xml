@@ -3,10 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/rodrigo/NetBeansProjects/RodrigoMachado/ENA_Rodrigo_Machado/src/java/controladores/ControladorUsuario.java</file>
-            <file>file:/home/rodrigo/NetBeansProjects/RodrigoMachado/ENA_Rodrigo_Machado/src/java/modelos/Requerimiento.java</file>
-            <file>file:/home/rodrigo/NetBeansProjects/RodrigoMachado/ENA_Rodrigo_Machado/src/java/modelos/Gerencia.java</file>
-            <file>file:/home/rodrigo/NetBeansProjects/RodrigoMachado/ENA_Rodrigo_Machado/src/java/modelos/Departamento.java</file>
+            <file>file:/home/rodrigo/NetBeansProjects/JavaWeb-ENA/ENA_Rodrigo_Machado/src/java/dao/Conexion.java</file>
+            <file>file:/home/rodrigo/NetBeansProjects/JavaWeb-ENA/ENA_Rodrigo_Machado/web/cerrarRequerimientos.jsp</file>
+            <file>file:/home/rodrigo/NetBeansProjects/JavaWeb-ENA/ENA_Rodrigo_Machado/web/estilos.css</file>
+            <file>file:/home/rodrigo/NetBeansProjects/JavaWeb-ENA/ENA_Rodrigo_Machado/web/ingresarRequerimiento.jsp</file>
+            <file>file:/home/rodrigo/NetBeansProjects/JavaWeb-ENA/ENA_Rodrigo_Machado/web/consultarRequerimientos.jsp</file>
+            <file>file:/home/rodrigo/NetBeansProjects/JavaWeb-ENA/ENA_Rodrigo_Machado/src/java/dao/EncargadoDAO.java</file>
+            <file>file:/home/rodrigo/NetBeansProjects/JavaWeb-ENA/ENA_Rodrigo_Machado/src/java/controladores/ControladorUsuario.java</file>
+            <file>file:/home/rodrigo/NetBeansProjects/JavaWeb-ENA/ENA_Rodrigo_Machado/web/index.jsp</file>
+            <file>file:/home/rodrigo/NetBeansProjects/JavaWeb-ENA/ENA_Rodrigo_Machado/src/java/dao/GerenciaDAO.java</file>
+            <file>file:/home/rodrigo/NetBeansProjects/JavaWeb-ENA/ENA_Rodrigo_Machado/src/java/dao/DepartamentoDAO.java</file>
+            <file>file:/home/rodrigo/NetBeansProjects/JavaWeb-ENA/ENA_Rodrigo_Machado/src/java/modelos/Usuario.java</file>
+            <file>file:/home/rodrigo/NetBeansProjects/JavaWeb-ENA/ENA_Rodrigo_Machado/web/menu.jsp</file>
         </group>
     </open-files>
 </project-private>

@@ -18,6 +18,26 @@ import modelos.Gerencia;
  */
 public class DepartamentoDAO extends Conexion {
     
+    public Departamento obtenerDepartamento(int idDpto) throws SQLException {
+        String sentencia = "select * from v_departamento where id = ?";
+        try{
+            conectar();
+            PreparedStatement ps= obtenerPS(sentencia);
+            ps.setInt(1, idDpto);
+            ResultSet rs = ps.executeQuery();
+            Departamento dpto = null;
+            if(rs.next()){
+               Gerencia gerencia = new Gerencia(rs.getInt("idGerencia"), rs.getString("nombreGerencia"));
+               dpto = new Departamento(rs.getInt("id"), rs.getString("nombre"), gerencia, rs.getInt("asignable") == 1);
+            }
+            return dpto;
+        }catch(Exception e){
+            return null;
+        }finally{
+            desconectar();
+        }
+    }
+    
     public ArrayList<Departamento> obtenerDepartamentos() throws SQLException {
         String sentencia = "select * from v_departamento";
         try{
@@ -31,7 +51,7 @@ public class DepartamentoDAO extends Conexion {
             }
             return departamentos;
         }catch(Exception e){
-            return null;
+            return new ArrayList();
         }finally{
             desconectar();
         }

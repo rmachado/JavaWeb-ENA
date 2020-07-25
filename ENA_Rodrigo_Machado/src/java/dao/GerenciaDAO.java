@@ -17,6 +17,26 @@ import modelos.Gerencia;
  */
 public class GerenciaDAO extends Conexion {
     
+    public Gerencia obtenerGerencia(int idGerencia) throws SQLException {
+        String sentencia = "select * from gerencia where id = ?";
+        try{
+            conectar();
+            PreparedStatement ps= obtenerPS(sentencia);
+            ps.setInt(1, idGerencia);
+            ResultSet rs = ps.executeQuery();
+            ArrayList<Gerencia> gerencias = new ArrayList();
+            Gerencia gerencia = null;
+            if(rs.next()){
+               gerencia = new Gerencia(rs.getInt("id"), rs.getString("nombre"));
+            }
+            return gerencia;
+        }catch(Exception e){
+            return null;
+        }finally{
+            desconectar();
+        }
+    }
+    
     public ArrayList<Gerencia> obtenerGerencias() throws SQLException {
         String sentencia = "select * from gerencia";
         try{
@@ -29,7 +49,7 @@ public class GerenciaDAO extends Conexion {
             }
             return gerencias;
         }catch(Exception e){
-            return null;
+            return new ArrayList();
         }finally{
             desconectar();
         }
